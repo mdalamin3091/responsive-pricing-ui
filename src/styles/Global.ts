@@ -66,7 +66,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.paddings.container};
+  padding: 40px ${({ theme }) => theme.paddings.container};
   padding-bottom: 50px;
 `
 
@@ -154,7 +154,7 @@ export const SmallDevicesHidden = css`
   }
 `
 
-interface FlexProps {
+export interface FlexProps {
   center?: boolean
   spaceBetween?: boolean
   evenly?: boolean

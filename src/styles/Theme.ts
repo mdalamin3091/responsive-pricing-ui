@@ -31,4 +31,11 @@ export const theme: DefaultTheme = {
   margins: {
     pageTop: '30px',
   },
+  sizes:{
+    sm:"14px",
+    md:"16px",
+    lg:"18px",
+    xl:"20px",
+    xxl:"32px"
+  }
 }

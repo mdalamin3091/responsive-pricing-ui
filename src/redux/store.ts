@@ -3,7 +3,7 @@ import { pricingPlanSliceReducer } from "./slice";
 
 export const store = configureStore({
     reducer: {
-        pricingPlan: pricingPlanSliceReducer
+        pricingPlans: pricingPlanSliceReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });
