@@ -1,15 +1,12 @@
-import Tabs from '../components/Tab/Tab'
-import { Container, GlobalStyles } from '../styles/Global'
+import Tabs from "../components/Tab/Tab";
+import { Container } from "../styles/Global";
 
 const PricingPlanPage = () => {
   return (
-    <>
-      <GlobalStyles />
       <Container>
-        <Tabs /> 
+        <Tabs />
       </Container>
-    </>
-  )
-}
+  );
+};
 
-export default PricingPlanPage
+export default PricingPlanPage;

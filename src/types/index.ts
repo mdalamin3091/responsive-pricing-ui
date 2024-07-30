@@ -40,4 +40,8 @@ interface PlanDetail {
     };
     features: Feature[];
   }
-  
+
+  export enum ActivePlan {
+  MONTHLY = "monthly",
+  YEARLY = "yearly",
+}

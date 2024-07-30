@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle, css } from 'styled-components'
-import { device } from './BreakPoints'
+import styled, { createGlobalStyle, css } from "styled-components";
+import { device } from "./BreakPoints";
 
 export const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
@@ -60,7 +60,7 @@ textarea,
 select {
   font: inherit;
 }
-`
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -68,29 +68,29 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 40px ${({ theme }) => theme.paddings.container};
   padding-bottom: 50px;
-`
+`;
 
 export const SmallContainer = styled.div`
   width: 100%;
   max-width: 570px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.paddings.container};
-`
+`;
 
 interface GridProps {
-  columns?: number
-  end?: boolean
-  cgp?: number
-  pt?: number
-  pb?: number
-  fullHeight?: boolean
-  py?: number
+  columns?: number;
+  end?: boolean;
+  cgp?: number;
+  pt?: number;
+  pb?: number;
+  fullHeight?: boolean;
+  py?: number;
 }
 
 export const Grid = styled.div<GridProps>`
   display: grid;
   grid-template-columns: repeat(${({ columns }) => columns || 2}, 1fr);
-  justify-items: ${({ end }) => end && 'end'};
+  justify-items: ${({ end }) => end && "end"};
   grid-column-gap: calc(${({ cgp }) => cgp} * 1px);
 
   ${({ pt }) =>
@@ -117,12 +117,12 @@ export const Grid = styled.div<GridProps>`
       padding-top: calc(${py} * 1px);
       padding-bottom: calc(${py} * 1px);
     `}
-`
+`;
 
 interface BoxProps {
-  mt?: number
-  flxRight?: boolean
-  smNone?: boolean
+  mt?: number;
+  flxRight?: boolean;
+  smNone?: boolean;
 }
 
 export const Box = styled.div<BoxProps>`
@@ -140,26 +140,26 @@ export const Box = styled.div<BoxProps>`
     css`
       ${SmallDevicesHidden}
     `}
-`
+`;
 
 export const SmallDeviceShow = css`
   @media screen and (min-width: 600px) {
     display: none;
   }
-`
+`;
 
 export const SmallDevicesHidden = css`
   @media ${device.sm} {
     display: none;
   }
-`
+`;
 
 export interface FlexProps {
-  center?: boolean
-  spaceBetween?: boolean
-  evenly?: boolean
-  flxEnd?: boolean
-  gap?: string
+  center?: boolean;
+  spaceBetween?: boolean;
+  evenly?: boolean;
+  flxEnd?: boolean;
+  gap?: string;
 }
 
 export const Flex = styled.div<FlexProps>`
@@ -193,4 +193,4 @@ export const Flex = styled.div<FlexProps>`
     css`
       gap: ${gap};
     `}
-`
+`;
