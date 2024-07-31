@@ -1,9 +1,28 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { TooltipStyled } from "../Tooltip/styled";
 
-export const DropdownStyled = styled.div`
+export const DropdownWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  position: relative;
+
+  & > svg {
+    color: ${({ theme }) => theme.colors.primaryColor};
+    cursor: pointer;
+  }
+
+  & > svg:hover + ${TooltipStyled} {
+    visibility: visible;
+    opacity: 1;
+  }
+`
+export const DropdownStyled = styled.div<{open?:boolean}>`
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.primaryColor};
-  border-radius: 5px;
+  border-radius: 5px;  
   cursor: pointer;
   font-size: 14px;
   font-weight: 400;
@@ -17,17 +36,29 @@ export const DropdownStyled = styled.div`
   user-select: none;
   white-space: nowrap;
   width: auto;
-  margin-top: 8px;
-`;
 
-export const IconWrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 28px;
-  transform: rotate(0deg);
-  transition: all 0.15s ease-in-out;
-  & > svg {
-    color: ${({ theme }) => theme.colors.primaryColor};
+  &::after{
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primaryColor};;
+    border-right: 2px solid ${({ theme }) => theme.colors.primaryColor};;
+    content: "";
+    display: block;
+    height: 8px;
+    margin-top: -4px;
+    pointer-events: none;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform-origin: 66% 66%;
+    transition: all .15s ease-in-out;
+    width: 8px;
+    ${({ open }) =>
+    open ?
+      css`
+          transform: rotate(225deg);
+    ` :
+      css`
+          transform: rotate(45deg);
+    `}
   }
 `;
 
@@ -39,3 +70,49 @@ export const DropdownTitle = styled.div`
   color: ${({ theme }) => theme.colors.primaryColor};
   text-overflow: ellipsis;
 `;
+
+export const DropdownList = styled.ul<{ open?: boolean }>`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 5px;
+  width: 225px;
+  height: auto;
+  top: 25px;
+  left: 0;
+  box-shadow: ${({ theme }) => theme.shadows.dropdownShadow};
+  list-style-type: none;
+  padding-left: 0;
+  z-index: 10;
+  transform-origin: 50% 0;
+  transition: all .2s cubic-bezier(.5,0,0,1.25), opacity .15s ease-out;
+
+  ${({ open }) =>
+    open ?
+      css`
+       visibility: visible;
+       opacity: 1;
+    ` :
+      css`
+       visibility: hidden;
+       opacity: 0;
+    `}
+`
+
+export const DropdownListItem = styled.li`
+  padding-left: 18px;
+  font-size: ${({ theme }) => theme.sizes.sm};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+  color: ${({ theme }) => theme.colors.textColor};
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover{
+    color: ${({ theme }) => theme.colors.primaryColor};
+    background-color: #f7f5fb;
+  }
+
+  &:last-child{
+    border-bottom: 0px;
+  }
+`
