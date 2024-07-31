@@ -3,12 +3,16 @@ import { DefaultTheme } from "styled-components";
 export const theme: DefaultTheme = {
   colors: {
     primaryColor: "#b78deb",
+    primaryBgColor:"#ecebff",
     primaryHoverColor: "#6e41a6",
     infoColor: "#4cb3fd",
     infoHoverColor: "#1884d1",
+    infoBgColor:"#e5f2ff",
     successColor: "#68cb9b",
+    successBgColor:"#d8fdf0",
     successHoverColor: "#40a373",
     warningColor: "#ffb72c",
+    warningBgColor:"#fff0d9",
     warningHoverColor: "#d69312",
     white: "#ffffff",
     textColor: "#49687e",

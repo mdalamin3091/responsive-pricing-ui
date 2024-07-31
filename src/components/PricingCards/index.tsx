@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../redux/hook"
-import PricingCardItem from "./PricingCardItem";
+import PricingCardItem from "./PricingCardItem/PricingCardItem";
 import { CardWrapper } from "./styled"
 
 const PricingCards = () => {
