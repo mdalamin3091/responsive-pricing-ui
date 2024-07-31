@@ -1,3 +1,4 @@
+import PlanInfo from "../PlanInfo/PlanInfo";
 import { Amount, AmountType, CardStyled, PlanName, PlanPrice } from "./styled";
 
 const PricingCardItem = () => {
@@ -8,6 +9,7 @@ const PricingCardItem = () => {
         <Amount>$15</Amount>
         <AmountType>/Month</AmountType>
       </PlanPrice>
+      <PlanInfo />
     </CardStyled>
   );
 };
