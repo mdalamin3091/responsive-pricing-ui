@@ -2,7 +2,7 @@ import styled, { createGlobalStyle, css } from "styled-components";
 import { device } from "./BreakPoints";
 
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
  
 /* Box sizing rules */
 *,
@@ -23,6 +23,7 @@ body {
   font-family: ${({ theme }) => theme.fonts.Rubik}, sans-serif;
   font-size: 1rem;
   line-height: 1;
+  background-color: #FCFAFE;
 }
 h1,
 h2,
