@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TooltipStyled } from "../../../styles/Global";
 
 export const FeatureStyled = styled.div`
     padding-top: 16px;
@@ -23,6 +24,12 @@ export const ListItem = styled.li`
     padding: 10px 0;
     font-size: ${({ theme }) => theme.sizes.sm};
     color: ${({ theme }) => theme.colors.textColor};
+    position: relative;
+
+    &:hover ${TooltipStyled} {
+    visibility: visible;
+    opacity: 1;
+  }
 `
 
 export const SelectPlanButton = styled.button`
