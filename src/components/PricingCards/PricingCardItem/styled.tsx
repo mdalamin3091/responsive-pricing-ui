@@ -13,8 +13,24 @@ export const PlanPrice = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 10px 0px;
-  gap: 5px;
+  gap: 8px;
 `;
+
+export const AmountWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  & > span{
+    position: absolute;
+    font-size: 12px;
+    color: ${({theme}) => theme.colors.dangerColor};
+    text-decoration: line-through;
+    top: -5px;
+    left: 0;
+  }
+`
 
 export const Amount = styled.p`
   font-size: ${({ theme }) => theme.sizes.xxl};
@@ -23,11 +39,28 @@ export const Amount = styled.p`
   color: ${({ theme }) => theme.colors.infoColor};
 `;
 
-export const AmountType = styled.span`
+export const AmountType = styled.p`
   font-size: ${({ theme }) => theme.sizes.sm};
   font-weight: 400;
   color: #83a1b7;
   align-self: flex-end;
+  margin-top: 10px;
+`;
+
+export const PopularBadge = styled.p`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.successColor};;
+  border-radius: 3px;
+  display: none;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  line-height: 1;
+  padding: 6.5px 8px;
+  right: 6px;
+  top: 6px;
 `;
 
 export const CardStyled = styled.div`
@@ -37,6 +70,7 @@ export const CardStyled = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-top: 8px solid ${({ theme }) => theme.colors.infoColor};
   background: ${({ theme }) => theme.colors.white};
+  position: relative;
   ${Amount} {
     color: ${({ theme }) => theme.colors.infoColor};
   }
@@ -48,10 +82,10 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.warningColor};
     }
     ${SelectPlanButton} {
-       background-color: ${({ theme }) => theme.colors.warningColor};
-       &:hover{
+      background-color: ${({ theme }) => theme.colors.warningColor};
+      &:hover {
         background-color: ${({ theme }) => theme.colors.warningHoverColor};
-       }
+      }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.warningColor};
@@ -61,14 +95,17 @@ export const CardStyled = styled.div`
   &:nth-child(3) {
     border-top: 8px solid ${({ theme }) => theme.colors.successColor};
 
+    ${PopularBadge}{
+      display: inline-block;
+    }
     ${Amount} {
       color: ${({ theme }) => theme.colors.successColor};
     }
     ${SelectPlanButton} {
-       background-color: ${({ theme }) => theme.colors.successColor};
-       &:hover{
+      background-color: ${({ theme }) => theme.colors.successColor};
+      &:hover {
         background-color: ${({ theme }) => theme.colors.successHoverColor};
-       }
+      }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.successColor};
@@ -81,10 +118,10 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.primaryColor};
     }
     ${SelectPlanButton} {
-       background-color: ${({ theme }) => theme.colors.primaryColor};
-       &:hover{
+      background-color: ${({ theme }) => theme.colors.primaryColor};
+      &:hover {
         background-color: ${({ theme }) => theme.colors.primaryHoverColor};
-       }
+      }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.primaryColor};
