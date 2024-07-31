@@ -36,6 +36,7 @@ export const CardStyled = styled.div`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-top: 8px solid ${({ theme }) => theme.colors.infoColor};
+  background: ${({ theme }) => theme.colors.white};
   ${Amount} {
     color: ${({ theme }) => theme.colors.infoColor};
   }
@@ -47,14 +48,14 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.warningColor};
     }
     ${SelectPlanButton} {
-       background: ${({ theme }) => theme.colors.warningColor};
+       background-color: ${({ theme }) => theme.colors.warningColor};
        &:hover{
-        background: ${({ theme }) => theme.colors.warningHoverColor};
+        background-color: ${({ theme }) => theme.colors.warningHoverColor};
        }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.warningColor};
-      background: ${({ theme }) => theme.colors.warningBgColor};
+      background-color: ${({ theme }) => theme.colors.warningBgColor};
     }
   }
   &:nth-child(3) {
@@ -64,14 +65,14 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.successColor};
     }
     ${SelectPlanButton} {
-       background: ${({ theme }) => theme.colors.successColor};
+       background-color: ${({ theme }) => theme.colors.successColor};
        &:hover{
-        background: ${({ theme }) => theme.colors.successHoverColor};
+        background-color: ${({ theme }) => theme.colors.successHoverColor};
        }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.successColor};
-      background: ${({ theme }) => theme.colors.successBgColor};
+      background-color: ${({ theme }) => theme.colors.successBgColor};
     }
   }
   &:nth-child(4) {
@@ -80,14 +81,14 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.primaryColor};
     }
     ${SelectPlanButton} {
-       background: ${({ theme }) => theme.colors.primaryColor};
+       background-color: ${({ theme }) => theme.colors.primaryColor};
        &:hover{
-        background: ${({ theme }) => theme.colors.primaryHoverColor};
+        background-color: ${({ theme }) => theme.colors.primaryHoverColor};
        }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.primaryColor};
-      background: ${({ theme }) => theme.colors.primaryBgColor};
+      background-color: ${({ theme }) => theme.colors.primaryBgColor};
     }
   }
 `;

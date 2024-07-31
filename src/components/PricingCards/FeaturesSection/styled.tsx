@@ -35,9 +35,10 @@ export const SelectPlanButton = styled.button`
     margin-top: auto;
     text-align: center;
     text-decoration: none;
-    background: ${({ theme }) => theme.colors.infoColor};
+    background-color: ${({ theme }) => theme.colors.infoColor};
     transition: background-color .3s;
+
     &:hover{
-        background: ${({ theme }) => theme.colors.infoHoverColor};
+        background-color: ${({ theme }) => theme.colors.infoHoverColor};
     }
 `
