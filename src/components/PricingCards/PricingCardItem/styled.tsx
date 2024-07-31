@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledPlanInfo } from "../PlanInfo/styled";
+import { SelectPlanButton } from "../FeaturesSection/styled";
 
 export const PlanName = styled.h4`
   font-size: ${({ theme }) => theme.sizes.lg};
@@ -45,6 +46,12 @@ export const CardStyled = styled.div`
     ${Amount} {
       color: ${({ theme }) => theme.colors.warningColor};
     }
+    ${SelectPlanButton} {
+       background: ${({ theme }) => theme.colors.warningColor};
+       &:hover{
+        background: ${({ theme }) => theme.colors.warningHoverColor};
+       }
+    }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.warningColor};
       background: ${({ theme }) => theme.colors.warningBgColor};
@@ -56,6 +63,12 @@ export const CardStyled = styled.div`
     ${Amount} {
       color: ${({ theme }) => theme.colors.successColor};
     }
+    ${SelectPlanButton} {
+       background: ${({ theme }) => theme.colors.successColor};
+       &:hover{
+        background: ${({ theme }) => theme.colors.successHoverColor};
+       }
+    }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.successColor};
       background: ${({ theme }) => theme.colors.successBgColor};
@@ -65,6 +78,12 @@ export const CardStyled = styled.div`
     border-top: 8px solid ${({ theme }) => theme.colors.primaryColor};
     ${Amount} {
       color: ${({ theme }) => theme.colors.primaryColor};
+    }
+    ${SelectPlanButton} {
+       background: ${({ theme }) => theme.colors.primaryColor};
+       &:hover{
+        background: ${({ theme }) => theme.colors.primaryHoverColor};
+       }
     }
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.primaryColor};
