@@ -1,3 +1,4 @@
+import FeaturesSection from "../FeaturesSection/FeaturesSection";
 import PlanInfo from "../PlanInfo/PlanInfo";
 import { Amount, AmountType, CardStyled, PlanName, PlanPrice } from "./styled";
 
@@ -10,6 +11,7 @@ const PricingCardItem = () => {
         <AmountType>/Month</AmountType>
       </PlanPrice>
       <PlanInfo />
+      <FeaturesSection />
     </CardStyled>
   );
 };
