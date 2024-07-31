@@ -10,7 +10,7 @@ export const StyledPlanInfo = styled.div`
   padding: 10px 15px;
   background: ${({ theme }) => theme.colors.infoBgColor};
   border-radius: 100px;
-  margin-top: 4px;
+  margin-top: 8px;
   color: ${({ theme }) => theme.colors.infoColor};
 
   & > svg {

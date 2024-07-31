@@ -36,6 +36,7 @@ export const theme: DefaultTheme = {
     pageTop: "30px",
   },
   sizes: {
+    xs:"12px",
     sm: "14px",
     md: "16px",
     lg: "18px",

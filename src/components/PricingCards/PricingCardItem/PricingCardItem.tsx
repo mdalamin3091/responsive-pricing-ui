@@ -1,5 +1,6 @@
+import Dropdown from "../../Dropdown/Dropdown";
 import FeaturesSection from "../FeaturesSection/FeaturesSection";
-import PlanInfo from "../PlanInfo/PlanInfo";
+// import PlanInfo from "../PlanInfo/PlanInfo";
 import { Amount, AmountType, AmountWrapper, CardStyled, PlanName, PlanPrice, PopularBadge } from "./styled";
 
 const PricingCardItem = () => {
@@ -14,7 +15,8 @@ const PricingCardItem = () => {
           <span>$15/Month</span>
         </AmountWrapper>
       </PlanPrice>
-      <PlanInfo />
+      {/* <PlanInfo /> */}
+      <Dropdown />
       <FeaturesSection />
     </CardStyled>
   );
