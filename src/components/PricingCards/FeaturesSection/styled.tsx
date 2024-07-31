@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TooltipStyled } from "../../../styles/Global";
+import { TooltipStyled } from "../../Tooltip/styled";
 
 export const FeatureStyled = styled.div`
     padding-top: 16px;
@@ -25,7 +25,8 @@ export const ListItem = styled.li`
     font-size: ${({ theme }) => theme.sizes.sm};
     color: ${({ theme }) => theme.colors.textColor};
     position: relative;
-
+    cursor: pointer;
+    width: fit-content;
     &:hover ${TooltipStyled} {
     visibility: visible;
     opacity: 1;
