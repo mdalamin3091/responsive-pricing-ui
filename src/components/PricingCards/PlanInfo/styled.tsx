@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TooltipStyled } from "../../../styles/Global";
+import { TooltipStyled } from "../../Tooltip/styled";
 
 export const StyledPlanInfo = styled.div`
   display: inline-flex;

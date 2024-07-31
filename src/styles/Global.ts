@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 // import { device } from "./BreakPoints";
 
 export const GlobalStyles = createGlobalStyle`
@@ -76,51 +76,4 @@ export const SmallContainer = styled.div`
   max-width: 570px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.paddings.container};
-`;
-
-export interface TooltipProps {
-  left?: boolean;
-  right?: boolean;
-}
-
-export const TooltipStyled = styled.div<TooltipProps>`
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid #fff;
-  border-radius: 8px;
-  bottom: calc(100% + 10px);
-  box-shadow: ${({ theme }) => theme.shadows.tooltipShadow};
-  color: ${({ theme }) => theme.colors.textColor};
-  visibility: hidden;
-  opacity: 0;
-  font-size: ${({ theme }) => theme.sizes.sm};
-  left: -10px;
-  line-height: 1.5;
-  min-width: 224px;
-  padding: 5px 10px;
-  position: absolute;
-  white-space: normal;
-  width: calc(100% + 20px);
-  word-break: break-word;
-  z-index: 10;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
-
-  &::after {
-    content: "";
-    position: absolute;
-    border: 8px solid transparent;
-    border-top-color: #fff;
-    bottom: -15px;
-    ${({ right }) =>
-    right &&
-    css`
-      right: 25px;
-    `}
-    ${({ left }) =>
-    left &&
-    css`
-      left: 25px;
-    `}
-    margin-left: -5px;
-    z-index: 102;
-  }
 `;

@@ -1,4 +1,4 @@
-import { TooltipStyled } from "../../../styles/Global";
+import Tooltip from "../../Tooltip/Tooltip";
 import {
   FeatureStyled,
   List,
@@ -15,10 +15,7 @@ const FeaturesSection = () => {
         {Array.from({ length: 10 }).map((_, index) => (
           <ListItem key={index}>
             Unlimited widgets
-            <TooltipStyled left>
-              The total number of unique visitors who can view Chaty on your
-              website each month. The visitors' counter resets once every month
-            </TooltipStyled>
+            <Tooltip arrowPosition="left" content="" />
           </ListItem>
         ))}
       </List>
