@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { StyledPlanInfo } from "../PlanInfo/styled";
 import { SelectPlanButton } from "../FeaturesSection/styled";
+import {
+  DropdownListItem,
+  DropdownStyled,
+  DropdownTitle,
+  DropdownWrapper,
+} from "../../Dropdown/Styled";
 
 export const PlanName = styled.h4`
   font-size: ${({ theme }) => theme.sizes.lg};
@@ -22,15 +28,15 @@ export const AmountWrapper = styled.div`
   flex-direction: column;
   position: relative;
 
-  & > span{
+  & > span {
     position: absolute;
     font-size: 12px;
-    color: ${({theme}) => theme.colors.dangerColor};
+    color: ${({ theme }) => theme.colors.dangerColor};
     text-decoration: line-through;
     top: -5px;
     left: 0;
   }
-`
+`;
 
 export const Amount = styled.p`
   font-size: ${({ theme }) => theme.sizes.xxl};
@@ -51,7 +57,7 @@ export const PopularBadge = styled.p`
   font-size: 12px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.successColor};;
+  background-color: ${({ theme }) => theme.colors.successColor};
   border-radius: 3px;
   display: none;
   font-size: 12px;
@@ -91,11 +97,34 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.warningColor};
       background-color: ${({ theme }) => theme.colors.warningBgColor};
     }
+    ${DropdownStyled} {
+      border: 1px solid ${({ theme }) => theme.colors.warningColor};
+
+      &::after {
+        border-bottom: 2px solid ${({ theme }) => theme.colors.warningColor};
+        border-right: 2px solid ${({ theme }) => theme.colors.warningColor};
+      }
+    }
+    ${DropdownTitle} {
+      color: ${({ theme }) => theme.colors.warningColor};
+    }
+    ${DropdownListItem} {
+      &:hover {
+        color: ${({ theme }) => theme.colors.warningColor};
+      }
+    }
+
+    ${DropdownWrapper} {
+      & > svg {
+        color: ${({ theme }) => theme.colors.warningColor};
+      }
+    }
   }
+  
   &:nth-child(3) {
     border-top: 8px solid ${({ theme }) => theme.colors.successColor};
 
-    ${PopularBadge}{
+    ${PopularBadge} {
       display: inline-block;
     }
     ${Amount} {
@@ -111,7 +140,30 @@ export const CardStyled = styled.div`
       color: ${({ theme }) => theme.colors.successColor};
       background-color: ${({ theme }) => theme.colors.successBgColor};
     }
+    ${DropdownStyled} {
+      border: 1px solid ${({ theme }) => theme.colors.successColor};
+
+      &::after {
+        border-bottom: 2px solid ${({ theme }) => theme.colors.successColor};
+        border-right: 2px solid ${({ theme }) => theme.colors.successColor};
+      }
+    }
+    ${DropdownTitle} {
+      color: ${({ theme }) => theme.colors.successColor};
+    }
+    ${DropdownListItem} {
+      &:hover {
+        color: ${({ theme }) => theme.colors.successColor};
+      }
+    }
+
+    ${DropdownWrapper} {
+      & > svg {
+        color: ${({ theme }) => theme.colors.successColor};
+      }
+    }
   }
+
   &:nth-child(4) {
     border-top: 8px solid ${({ theme }) => theme.colors.primaryColor};
     ${Amount} {
@@ -126,6 +178,28 @@ export const CardStyled = styled.div`
     ${StyledPlanInfo} {
       color: ${({ theme }) => theme.colors.primaryColor};
       background-color: ${({ theme }) => theme.colors.primaryBgColor};
+    }
+    ${DropdownStyled} {
+      border: 1px solid ${({ theme }) => theme.colors.primaryColor};
+
+      &::after {
+        border-bottom: 2px solid ${({ theme }) => theme.colors.primaryColor};
+        border-right: 2px solid ${({ theme }) => theme.colors.primaryColor};
+      }
+    }
+    ${DropdownTitle} {
+      color: ${({ theme }) => theme.colors.primaryColor};
+    }
+    ${DropdownListItem} {
+      &:hover {
+        color: ${({ theme }) => theme.colors.primaryColor};
+      }
+    }
+
+    ${DropdownWrapper} {
+      & > svg {
+        color: ${({ theme }) => theme.colors.primaryColor};
+      }
     }
   }
 `;

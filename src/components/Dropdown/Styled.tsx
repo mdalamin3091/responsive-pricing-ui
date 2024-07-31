@@ -1,27 +1,10 @@
 import styled, { css } from "styled-components";
 import { TooltipStyled } from "../Tooltip/styled";
 
-export const DropdownWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 8px;
-  position: relative;
 
-  & > svg {
-    color: ${({ theme }) => theme.colors.primaryColor};
-    cursor: pointer;
-  }
-
-  & > svg:hover + ${TooltipStyled} {
-    visibility: visible;
-    opacity: 1;
-  }
-`
 export const DropdownStyled = styled.div<{open?:boolean}>`
   background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.primaryColor};
+  border: 1px solid ${({ theme }) => theme.colors.infoColor};
   border-radius: 5px;  
   cursor: pointer;
   font-size: 14px;
@@ -38,8 +21,8 @@ export const DropdownStyled = styled.div<{open?:boolean}>`
   width: auto;
 
   &::after{
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primaryColor};;
-    border-right: 2px solid ${({ theme }) => theme.colors.primaryColor};;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.infoColor};
+    border-right: 2px solid ${({ theme }) => theme.colors.infoColor};
     content: "";
     display: block;
     height: 8px;
@@ -67,7 +50,7 @@ export const DropdownTitle = styled.div`
   font-size: ${({ theme }) => theme.sizes.xs};
   max-width: 144px;
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.infoColor};
   text-overflow: ellipsis;
 `;
 
@@ -108,11 +91,31 @@ export const DropdownListItem = styled.li`
   text-overflow: ellipsis;
 
   &:hover{
-    color: ${({ theme }) => theme.colors.primaryColor};
+    color: ${({ theme }) => theme.colors.infoColor};
     background-color: #f7f5fb;
   }
 
   &:last-child{
     border-bottom: 0px;
   }
+`
+
+export const DropdownWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  position: relative;
+
+  & > svg {
+    color: ${({ theme }) => theme.colors.infoColor};
+    cursor: pointer;
+  }
+
+  & > svg:hover + ${TooltipStyled} {
+    visibility: visible;
+    opacity: 1;
+  }
+
 `
