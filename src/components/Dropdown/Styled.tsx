@@ -103,7 +103,7 @@ export const DropdownListItem = styled.li`
 export const DropdownWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
   margin-top: 8px;
   position: relative;
