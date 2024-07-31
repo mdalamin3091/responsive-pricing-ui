@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Flex } from "../../styles/Global";
 import { device } from "../../styles/BreakPoints";
 
 type TabButtonProps = {
@@ -14,6 +13,7 @@ export const TabWrapper = styled.div`
     justify-content: space-between;
   }
 `;
+
 export const TabButton = styled.button<TabButtonProps>`
   color: ${({ theme, isActive }) =>
     isActive ? theme.colors.primaryColor : theme.colors.textColor};
@@ -46,7 +46,10 @@ export const TabButton = styled.button<TabButtonProps>`
   }
 `;
 
-export const TabBadge = styled(Flex)`
+export const TabBadge = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px 12px;
   border-radius: 100px;
   background: rgba(183, 141, 235, 0.15);

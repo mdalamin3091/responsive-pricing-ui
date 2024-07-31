@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle, css } from "styled-components";
-import { device } from "./BreakPoints";
+// import { device } from "./BreakPoints";
 
 export const GlobalStyles = createGlobalStyle`
 /* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
@@ -78,120 +78,49 @@ export const SmallContainer = styled.div`
   padding: 0 ${({ theme }) => theme.paddings.container};
 `;
 
-interface GridProps {
-  columns?: number;
-  end?: boolean;
-  cgp?: number;
-  pt?: number;
-  pb?: number;
-  fullHeight?: boolean;
-  py?: number;
+export interface TooltipProps {
+  left?: boolean;
+  right?: boolean;
 }
 
-export const Grid = styled.div<GridProps>`
-  display: grid;
-  grid-template-columns: repeat(${({ columns }) => columns || 2}, 1fr);
-  justify-items: ${({ end }) => end && "end"};
-  grid-column-gap: calc(${({ cgp }) => cgp} * 1px);
+export const TooltipStyled = styled.div<TooltipProps>`
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid #fff;
+  border-radius: 8px;
+  bottom: calc(100% + 10px);
+  box-shadow: ${({ theme }) => theme.shadows.tooltipShadow};
+  color: ${({ theme }) => theme.colors.textColor};
+  visibility: hidden;
+  opacity: 0;
+  font-size: ${({ theme }) => theme.sizes.sm};
+  left: -10px;
+  line-height: 1.5;
+  min-width: 224px;
+  padding: 5px 10px;
+  position: absolute;
+  white-space: normal;
+  width: calc(100% + 20px);
+  word-break: break-word;
+  z-index: 10;
+  transition: visibility 0s, opacity 0.2s ease-in-out;
 
-  ${({ pt }) =>
-    pt &&
+  &::after {
+    content: "";
+    position: absolute;
+    border: 8px solid transparent;
+    border-top-color: #fff;
+    bottom: -15px;
+    ${({ right }) =>
+    right &&
     css`
-      padding-top: calc(${pt} * 1px);
+      right: 25px;
     `}
-
-  ${({ pb }) =>
-    pb &&
+    ${({ left }) =>
+    left &&
     css`
-      padding-bottom: calc(${pb} * 1px);
+      left: 25px;
     `}
-
-  ${({ fullHeight }) =>
-    fullHeight &&
-    css`
-      height: 100%;
-    `}
-
-  ${({ py }) =>
-    py &&
-    css`
-      padding-top: calc(${py} * 1px);
-      padding-bottom: calc(${py} * 1px);
-    `}
-`;
-
-interface BoxProps {
-  mt?: number;
-  flxRight?: boolean;
-  smNone?: boolean;
-}
-
-export const Box = styled.div<BoxProps>`
-  margin-top: calc(${({ mt }) => mt} * 1px);
-
-  ${({ flxRight }) =>
-    flxRight &&
-    css`
-      display: flex;
-      justify-content: flex-end;
-    `}
-
-  ${({ smNone }) =>
-    smNone &&
-    css`
-      ${SmallDevicesHidden}
-    `}
-`;
-
-export const SmallDeviceShow = css`
-  @media screen and (min-width: 600px) {
-    display: none;
+    margin-left: -5px;
+    z-index: 102;
   }
-`;
-
-export const SmallDevicesHidden = css`
-  @media ${device.sm} {
-    display: none;
-  }
-`;
-
-export interface FlexProps {
-  center?: boolean;
-  spaceBetween?: boolean;
-  evenly?: boolean;
-  flxEnd?: boolean;
-  gap?: string;
-}
-
-export const Flex = styled.div<FlexProps>`
-  display: flex;
-  ${({ center }) =>
-    center &&
-    css`
-      justify-content: center;
-      align-items: center;
-    `}
-  ${({ spaceBetween }) =>
-    spaceBetween &&
-    css`
-      justify-content: space-between;
-      align-items: center;
-    `}
-  ${({ evenly }) =>
-    evenly &&
-    css`
-      justify-content: space-evenly;
-      align-items: center;
-    `}
-  ${({ flxEnd }) =>
-    flxEnd &&
-    css`
-      justify-content: flex-end;
-      align-items: center;
-    `}
-  ${({ gap }) =>
-    gap &&
-    css`
-      gap: ${gap};
-    `}
 `;
