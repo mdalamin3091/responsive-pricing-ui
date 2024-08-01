@@ -16,6 +16,7 @@ export const List = styled.ul`
     margin-bottom: 12px;
     text-align: left;
     padding-left: 0px;
+    min-height: 340px;
 `
 
 export const ListItem = styled.li`
