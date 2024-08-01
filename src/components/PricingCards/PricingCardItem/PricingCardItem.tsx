@@ -1,4 +1,4 @@
-// import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../../Dropdown/Dropdown";
 import { FC } from "react";
 import FeaturesSection from "../FeaturesSection/FeaturesSection";
 import PlanInfo from "../PlanInfo/PlanInfo";
@@ -13,23 +13,26 @@ import {
 } from "./styled";
 import { Plan } from "../../../types";
 
-const PricingCardItem: FC<{ plan: Plan }> = ({ plan }) => {
+const PricingCardItem: FC<{ plans: Plan[] }> = ({ plans }) => {
   return (
     <CardStyled>
       <PopularBadge>Most Popular</PopularBadge>
-      <PlanName>{plan.name}</PlanName>
+      <PlanName>{plans[0].name}</PlanName>
       <PlanPrice>
-        <Amount>{plan.price}</Amount>
+        <Amount>{plans[0].price}</Amount>
         <AmountWrapper>
-          <AmountType>{plan.details["1_year"].price_postfix}</AmountType>
-          {plan.details["1_year"].plan_type === "Billed annually" && (
+          <AmountType>{plans[0].details["1_year"].price_postfix}</AmountType>
+          {plans[0].details["1_year"].plan_type === "Billed annually" && (
             <span>$15/Month</span>
           )}
         </AmountWrapper>
       </PlanPrice>
-      <PlanInfo plan={plan} />
-      {/* <Dropdown /> */}
-      <FeaturesSection plan={plan}/>
+      {plans.length > 1 ? (
+        <Dropdown plans={plans} />
+      ) : (
+        <PlanInfo plan={plans[0]} />
+      )}
+      <FeaturesSection plan={plans[0]} />
     </CardStyled>
   );
 };

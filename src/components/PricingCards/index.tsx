@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useAppSelector } from "../../redux/hook";
 import PricingCardItem from "./PricingCardItem/PricingCardItem";
 import { CardWrapper } from "./styled";
@@ -5,10 +6,20 @@ import { CardWrapper } from "./styled";
 const PricingCards = () => {
   const data = useAppSelector((state) => state.pricingPlans.data);
 
+  const groupedPlans = useMemo(() => {
+    return data.plans.reduce<Record<string, typeof data.plans[number][]>>((acc, plan) => {
+      if (!acc[plan.name]) {
+        acc[plan.name] = [];
+      }
+      acc[plan.name].push(plan);
+      return acc;
+    }, {});
+  }, [data]);
+  
   return (
     <CardWrapper>
-      {data.plans.slice(0, 4).map((plan, index) => (
-        <PricingCardItem key={index} plan={plan} />
+      {Object.keys(groupedPlans).map((planName, index) => (
+        <PricingCardItem key={index} plans={groupedPlans[planName]} />
       ))}
     </CardWrapper>
   );
