@@ -1,9 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 // import { device } from "./BreakPoints";
 
-export const GlobalStyles = createGlobalStyle`
-/* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
- 
+export const GlobalStyles = createGlobalStyle` 
 /* Box sizing rules */
 *,
 *::before,

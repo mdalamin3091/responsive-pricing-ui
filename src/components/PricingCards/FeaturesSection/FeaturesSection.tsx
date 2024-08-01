@@ -14,21 +14,28 @@ const FeaturesSection: FC<{ plan: Plan }> = ({ plan }) => {
   const data = useAppSelector((state) => state.pricingPlans.data);
 
   const dynamicTitle = useMemo(() => {
-    return plan?.name === "Free" ? "Free includes:" : "Everything in free plus:";
+    return plan?.name === "Free"
+      ? "Free includes:"
+      : "Everything in free plus:";
   }, [plan?.name]);
 
   const dynamicLoadFeatures = useCallback(() => {
-    return data.features.map((feature, index) => {
-      if ((Number(feature.is_pro) && plan.name !== "Free") || (!Number(feature.is_pro) && plan.name === "Free")) {
-        return (
-          <ListItem key={index}>
-            {feature.feature_title}
-            <Tooltip arrowPosition="left" content={feature.feature_desc} />
-          </ListItem>
-        );
-      }
-      return null;
-    }).filter(Boolean); // Filter out null values
+    return data.features
+      .map((feature, index) => {
+        if (
+          (Number(feature.is_pro) && plan.name !== "Free") ||
+          (!Number(feature.is_pro) && plan.name === "Free")
+        ) {
+          return (
+            <ListItem key={crypto.randomUUID() + index}>
+              {feature.feature_title}
+              <Tooltip arrowPosition="left" content={feature.feature_desc} />
+            </ListItem>
+          );
+        }
+        return null;
+      })
+      .filter(Boolean); // Filter out null values
   }, [data.features, plan.name]);
 
   return (

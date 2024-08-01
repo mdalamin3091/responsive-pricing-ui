@@ -31,8 +31,11 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
   }, [dispatch, plans]);
 
   return (
-    <DropdownWrapper onClick={() => handleDropdownMenu(plans[0].name)}>
-      <DropdownStyled open={openDropdownMenu === plans[0].name}>
+    <DropdownWrapper>
+      <DropdownStyled
+        open={openDropdownMenu === plans[0].name}
+        onClick={() => handleDropdownMenu(plans[0].name)}
+      >
         <DropdownTitle
           dangerouslySetInnerHTML={{
             __html:
@@ -44,7 +47,7 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
         <DropdownList open={openDropdownMenu === plans[0].name}>
           {plans.map((plan, index) => (
             <DropdownListItem
-              key={index}
+              key={crypto.randomUUID() + index}
               onClick={() => dispatch(setSelectPlans(plan))}
               dangerouslySetInnerHTML={{
                 __html: plan.title,
