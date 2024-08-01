@@ -9,7 +9,7 @@ interface PlanDetail {
     price_id: string;
   }
   
-  interface Plan {
+  export interface Plan {
     name: string;
     price: string;
     title: string;
@@ -26,7 +26,7 @@ interface PlanDetail {
     discount: string;
   }
   
-  interface Feature {
+  export interface Feature {
     is_pro: string;
     feature_title: string;
     feature_desc: string;
@@ -42,6 +42,6 @@ interface PlanDetail {
   }
 
   export enum ActivePlan {
-  MONTHLY = "monthly",
-  YEARLY = "yearly",
-}
+    MONTHLY = "Billed monthly",
+    YEARLY = "Billed annually",
+  }

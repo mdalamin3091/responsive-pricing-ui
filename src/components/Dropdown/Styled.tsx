@@ -83,7 +83,7 @@ export const DropdownList = styled.ul<{ open?: boolean }>`
 
 export const DropdownListItem = styled.li`
   padding-left: 18px;
-  font-size: ${({ theme }) => theme.sizes.sm};
+  font-size: ${({ theme }) => theme.sizes.xs};
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   color: ${({ theme }) => theme.colors.textColor};
   width: 100%;

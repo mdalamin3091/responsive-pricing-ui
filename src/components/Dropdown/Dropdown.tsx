@@ -1,40 +1,60 @@
+import { FC, useEffect } from "react";
 import WarningIcon from "../../assets/svg/WarningIcon";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { setDropdownOpen } from "../../redux/slice";
+import { setDropdownOpen, setSelectPlans } from "../../redux/slice";
+import { Plan } from "../../types";
 import Tooltip from "../Tooltip/Tooltip";
-import { DropdownList, DropdownListItem, DropdownStyled, DropdownTitle, DropdownWrapper } from "./Styled";
+import {
+  DropdownList,
+  DropdownListItem,
+  DropdownStyled,
+  DropdownTitle,
+  DropdownWrapper,
+} from "./Styled";
 
-const Dropdown = () => {
-  const openDropdownMenu = useAppSelector(
-    (state) => state.pricingPlans.openDropdownMenu
+const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
+  const { openDropdownMenu, selectPlans } = useAppSelector(
+    (state) => state.pricingPlans
   );
   const dispatch = useAppDispatch();
 
-  const handleDropdownMenu = (value:string) => {
-    if(openDropdownMenu === value){
-      dispatch(setDropdownOpen(""))
-    }else{
-      dispatch(setDropdownOpen(value))
+  const handleDropdownMenu = (value: string) => {
+    if (openDropdownMenu === value) {
+      dispatch(setDropdownOpen(""));
+    } else {
+      dispatch(setDropdownOpen(value));
     }
-  }
+  };
+
+  useEffect(() => {
+    dispatch(setSelectPlans(plans[0]));
+  }, [dispatch, plans]);
 
   return (
-    <DropdownWrapper>
-      <DropdownStyled onClick={() => handleDropdownMenu("Free")} open={openDropdownMenu === "Free"}>
+    <DropdownWrapper onClick={() => handleDropdownMenu(plans[0].name)}>
+      <DropdownStyled open={openDropdownMenu === plans[0].name}>
         <DropdownTitle
           dangerouslySetInnerHTML={{
-            __html: "Up to <strong>50,000</strong> visitors/month",
+            __html:
+              plans[0].name === selectPlans.name
+                ? selectPlans.title
+                : plans[0].title,
           }}
         />
-        <DropdownList open={openDropdownMenu === "Free"}>
-          <DropdownListItem>Up to 50,000 visitors/month</DropdownListItem>
-          <DropdownListItem>Up to 50,000 visitors/month</DropdownListItem>
-          <DropdownListItem>Up to 50,000 visitors/month</DropdownListItem>
-          <DropdownListItem>Up to 50,000 visitors/month</DropdownListItem>
+        <DropdownList open={openDropdownMenu === plans[0].name}>
+          {plans.map((plan, index) => (
+            <DropdownListItem
+              key={index}
+              onClick={() => dispatch(setSelectPlans(plan))}
+              dangerouslySetInnerHTML={{
+                __html: plan.title,
+              }}
+            />
+          ))}
         </DropdownList>
       </DropdownStyled>
       <WarningIcon />
-      <Tooltip content=""/>
+      <Tooltip content={selectPlans.text} />
     </DropdownWrapper>
   );
 };

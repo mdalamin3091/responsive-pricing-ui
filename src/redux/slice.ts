@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ActivePlan, PlansData } from "../types";
+import { ActivePlan, Plan, PlansData } from "../types";
 import data from "../assets/data.json";
 
 type PricingSliceState = {
   data: PlansData;
   activePlan: ActivePlan;
   openDropdownMenu: string;
+  selectPlans: Plan;
 };
 
 const initialState: PricingSliceState = {
   data: data,
   activePlan: ActivePlan.MONTHLY,
   openDropdownMenu: "",
+  selectPlans: {} as Plan,
 };
 
 const pricingPlanSlice = createSlice({
@@ -24,8 +26,13 @@ const pricingPlanSlice = createSlice({
     setDropdownOpen(state, action: PayloadAction<string>) {
       state.openDropdownMenu = action.payload;
     },
+    setSelectPlans(state, action: PayloadAction<Plan>) {
+      state.openDropdownMenu = "";
+     state.selectPlans = action.payload
+    },
   },
 });
 
-export const { setActivePlan, setDropdownOpen } = pricingPlanSlice.actions;
+export const { setActivePlan, setDropdownOpen, setSelectPlans } =
+  pricingPlanSlice.actions;
 export const pricingPlanSliceReducer = pricingPlanSlice.reducer;
