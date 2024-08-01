@@ -17,13 +17,15 @@ const Tabs: React.FC = () => {
       >
         {plansInfo?.["1_year"]?.title || "Billed monthly"}
       </TabButton>
-      <TabButton
-        onClick={() => dispatch(setActivePlan(ActivePlan.YEARLY))}
-        isActive={activePlan === ActivePlan.YEARLY}
-      >
-        {plansInfo?.["2_year"]?.title || "Billed yearly"}
-      </TabButton>
-      <TabBadge>{plansInfo?.["2_year"]?.discount}</TabBadge>
+      <div>
+        <TabButton
+          onClick={() => dispatch(setActivePlan(ActivePlan.YEARLY))}
+          isActive={activePlan === ActivePlan.YEARLY}
+        >
+          {plansInfo?.["2_year"]?.title || "Billed yearly"}
+        </TabButton>
+        <TabBadge>{plansInfo?.["2_year"]?.discount}</TabBadge>
+      </div>
     </TabWrapper>
   );
 };
