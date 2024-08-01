@@ -5,7 +5,9 @@ import { setActivePlan } from "../../redux/slice";
 import { ActivePlan } from "../../types";
 
 const Tabs: React.FC = () => {
-  const activePlan = useAppSelector((state) => state.pricingPlans.activePlan);
+  const { activePlan, data: { plansInfo } = {} } = useAppSelector(
+    (state) => state.pricingPlans
+  );
   const dispatch = useAppDispatch();
   return (
     <TabWrapper>
@@ -13,15 +15,15 @@ const Tabs: React.FC = () => {
         onClick={() => dispatch(setActivePlan(ActivePlan.MONTHLY))}
         isActive={activePlan === ActivePlan.MONTHLY}
       >
-        Billed monthly
+        {plansInfo?.["1_year"]?.title || "Billed monthly"}
       </TabButton>
       <TabButton
         onClick={() => dispatch(setActivePlan(ActivePlan.YEARLY))}
         isActive={activePlan === ActivePlan.YEARLY}
       >
-        Billed yearly
+        {plansInfo?.["2_year"]?.title || "Billed yearly"}
       </TabButton>
-      <TabBadge>Save 20% 😍</TabBadge>
+      <TabBadge>{plansInfo?.["2_year"]?.discount}</TabBadge>
     </TabWrapper>
   );
 };
