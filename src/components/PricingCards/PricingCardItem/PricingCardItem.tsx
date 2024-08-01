@@ -1,23 +1,35 @@
-import Dropdown from "../../Dropdown/Dropdown";
+// import Dropdown from "../../Dropdown/Dropdown";
+import { FC } from "react";
 import FeaturesSection from "../FeaturesSection/FeaturesSection";
-// import PlanInfo from "../PlanInfo/PlanInfo";
-import { Amount, AmountType, AmountWrapper, CardStyled, PlanName, PlanPrice, PopularBadge } from "./styled";
+import PlanInfo from "../PlanInfo/PlanInfo";
+import {
+  Amount,
+  AmountType,
+  AmountWrapper,
+  CardStyled,
+  PlanName,
+  PlanPrice,
+  PopularBadge,
+} from "./styled";
+import { Plan } from "../../../types";
 
-const PricingCardItem = () => {
+const PricingCardItem: FC<{ plan: Plan }> = ({ plan }) => {
   return (
     <CardStyled>
       <PopularBadge>Most Popular</PopularBadge>
-      <PlanName>Free</PlanName>
+      <PlanName>{plan.name}</PlanName>
       <PlanPrice>
-        <Amount>$15</Amount>
+        <Amount>{plan.price}</Amount>
         <AmountWrapper>
-          <AmountType>/Month</AmountType>
-          <span>$15/Month</span>
+          <AmountType>{plan.details["1_year"].price_postfix}</AmountType>
+          {plan.details["1_year"].plan_type === "Billed annually" && (
+            <span>$15/Month</span>
+          )}
         </AmountWrapper>
       </PlanPrice>
-      {/* <PlanInfo /> */}
-      <Dropdown />
-      <FeaturesSection />
+      <PlanInfo plan={plan} />
+      {/* <Dropdown /> */}
+      <FeaturesSection plan={plan}/>
     </CardStyled>
   );
 };

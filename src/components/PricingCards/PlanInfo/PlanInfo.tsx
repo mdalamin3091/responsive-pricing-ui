@@ -1,13 +1,19 @@
+import { FC } from "react";
 import WarningIcon from "../../../assets/svg/WarningIcon";
 import Tooltip from "../../Tooltip/Tooltip";
 import { StyledPlanInfo, Text } from "./styled";
+import { Plan } from "../../../types";
 
-const PlanInfo = () => {
+const PlanInfo: FC<{ plan: Plan }> = ({ plan }) => {
   return (
     <StyledPlanInfo>
-      <Text>Up to 500 visitors/month</Text>
+      <Text
+        dangerouslySetInnerHTML={{
+          __html: plan.title,
+        }}
+      />
       <WarningIcon />
-      <Tooltip content="" />
+      <Tooltip content={plan.text} />
     </StyledPlanInfo>
   );
 };
