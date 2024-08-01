@@ -1,6 +1,54 @@
-import styled from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
 import { StyledPlanInfo } from "../PlanInfo/styled";
 import { SelectPlanButton } from "../FeaturesSection/styled";
+import {
+  DropdownListItem,
+  DropdownStyled,
+  DropdownTitle,
+  DropdownWrapper,
+} from "../../Dropdown/Styled";
+
+const getDynamicStyles = (
+  theme: DefaultTheme,
+  color: string,
+  hoverColor: string,
+  bgColor: string
+) => css`
+  border-top: 8px solid ${theme.colors[color]};
+  ${Amount} {
+    color: ${theme.colors[color]};
+  }
+  ${SelectPlanButton} {
+    background-color: ${theme.colors[color]};
+    &:hover {
+      background-color: ${theme.colors[hoverColor]};
+    }
+  }
+  ${StyledPlanInfo} {
+    color: ${theme.colors[color]};
+    background-color: ${theme.colors[bgColor]};
+  }
+  ${DropdownStyled} {
+    border: 1px solid ${theme.colors[color]};
+    &::after {
+      border-bottom: 2px solid ${theme.colors[color]};
+      border-right: 2px solid ${theme.colors[color]};
+    }
+  }
+  ${DropdownTitle} {
+    color: ${theme.colors[color]};
+  }
+  ${DropdownListItem} {
+    &:hover {
+      color: ${theme.colors[color]};
+    }
+  }
+  ${DropdownWrapper} {
+    & > svg {
+      color: ${theme.colors[color]};
+    }
+  }
+`;
 
 export const PlanName = styled.h4`
   font-size: ${({ theme }) => theme.sizes.lg};
@@ -22,15 +70,15 @@ export const AmountWrapper = styled.div`
   flex-direction: column;
   position: relative;
 
-  & > span{
+  & > span {
     position: absolute;
     font-size: 12px;
-    color: ${({theme}) => theme.colors.dangerColor};
+    color: ${({ theme }) => theme.colors.dangerColor};
     text-decoration: line-through;
     top: -5px;
     left: 0;
   }
-`
+`;
 
 export const Amount = styled.p`
   font-size: ${({ theme }) => theme.sizes.xxl};
@@ -51,7 +99,7 @@ export const PopularBadge = styled.p`
   font-size: 12px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.successColor};;
+  background-color: ${({ theme }) => theme.colors.successColor};
   border-radius: 3px;
   display: none;
   font-size: 12px;
@@ -68,64 +116,42 @@ export const CardStyled = styled.div`
   padding: 24px 20px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  border-top: 8px solid ${({ theme }) => theme.colors.infoColor};
   background: ${({ theme }) => theme.colors.white};
   position: relative;
-  ${Amount} {
-    color: ${({ theme }) => theme.colors.infoColor};
-  }
+
+  ${({ theme }) =>
+    getDynamicStyles(theme, "infoColor", "infoHoverColor", "infoBgColor")}
 
   &:nth-child(2) {
-    border-top: 8px solid ${({ theme }) => theme.colors.warningColor};
-
-    ${Amount} {
-      color: ${({ theme }) => theme.colors.warningColor};
-    }
-    ${SelectPlanButton} {
-      background-color: ${({ theme }) => theme.colors.warningColor};
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.warningHoverColor};
-      }
-    }
-    ${StyledPlanInfo} {
-      color: ${({ theme }) => theme.colors.warningColor};
-      background-color: ${({ theme }) => theme.colors.warningBgColor};
-    }
+    ${({ theme }) =>
+      getDynamicStyles(
+        theme,
+        "warningColor",
+        "warningHoverColor",
+        "warningBgColor"
+      )}
   }
-  &:nth-child(3) {
-    border-top: 8px solid ${({ theme }) => theme.colors.successColor};
 
-    ${PopularBadge}{
+  &:nth-child(3) {
+    ${({ theme }) =>
+      getDynamicStyles(
+        theme,
+        "successColor",
+        "successHoverColor",
+        "successBgColor"
+      )}
+    ${PopularBadge} {
       display: inline-block;
     }
-    ${Amount} {
-      color: ${({ theme }) => theme.colors.successColor};
-    }
-    ${SelectPlanButton} {
-      background-color: ${({ theme }) => theme.colors.successColor};
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.successHoverColor};
-      }
-    }
-    ${StyledPlanInfo} {
-      color: ${({ theme }) => theme.colors.successColor};
-      background-color: ${({ theme }) => theme.colors.successBgColor};
-    }
   }
+
   &:nth-child(4) {
-    border-top: 8px solid ${({ theme }) => theme.colors.primaryColor};
-    ${Amount} {
-      color: ${({ theme }) => theme.colors.primaryColor};
-    }
-    ${SelectPlanButton} {
-      background-color: ${({ theme }) => theme.colors.primaryColor};
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.primaryHoverColor};
-      }
-    }
-    ${StyledPlanInfo} {
-      color: ${({ theme }) => theme.colors.primaryColor};
-      background-color: ${({ theme }) => theme.colors.primaryBgColor};
-    }
+    ${({ theme }) =>
+      getDynamicStyles(
+        theme,
+        "primaryColor",
+        "primaryHoverColor",
+        "primaryBgColor"
+      )}
   }
 `;
