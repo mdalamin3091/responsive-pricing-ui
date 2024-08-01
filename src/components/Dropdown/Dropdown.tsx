@@ -29,13 +29,10 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
   useEffect(() => {
     dispatch(setSelectPlans(plans[0]));
   }, [dispatch, plans]);
-  
+
   return (
-    <DropdownWrapper>
-      <DropdownStyled
-        onClick={() => handleDropdownMenu(plans[0].name)}
-        open={openDropdownMenu === plans[0].name}
-      >
+    <DropdownWrapper onClick={() => handleDropdownMenu(plans[0].name)}>
+      <DropdownStyled open={openDropdownMenu === plans[0].name}>
         <DropdownTitle
           dangerouslySetInnerHTML={{
             __html:

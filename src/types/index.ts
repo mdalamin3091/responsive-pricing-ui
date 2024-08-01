@@ -42,6 +42,6 @@ interface PlanDetail {
   }
 
   export enum ActivePlan {
-  MONTHLY = "monthly",
-  YEARLY = "yearly",
-}
+    MONTHLY = "Billed monthly",
+    YEARLY = "Billed annually",
+  }

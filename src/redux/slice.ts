@@ -27,6 +27,7 @@ const pricingPlanSlice = createSlice({
       state.openDropdownMenu = action.payload;
     },
     setSelectPlans(state, action: PayloadAction<Plan>) {
+      state.openDropdownMenu = "";
      state.selectPlans = action.payload
     },
   },
