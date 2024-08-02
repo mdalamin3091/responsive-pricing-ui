@@ -54,12 +54,12 @@
         },
         {
             "name": "Basic",
-            "price": "$15",
-            "title": "Up to <strong>10,000</strong> visitors/month",
+            "price": "$18",
+            "title": "Up to <strong>40,000</strong> visitors/month",
             "text": "The total number of unique visitors who can view Chaty on your website each month. The visitors' counter resets once every month",
             "details": {
                 "1_year": {
-                    "price": "$15",
+                    "price": "$18",
                     "price_postfix": "/Month",
                     "plan_type": "Billed monthly",
                     "plan_info": "",
@@ -68,7 +68,7 @@
                     "price_id": "#3"
                 },
                 "2_year": {
-                    "price": "$12.5",
+                    "price": "$15",
                     "price_postfix": "/Month",
                     "plan_type": "Billed annually",
                     "plan_info": "Save $",

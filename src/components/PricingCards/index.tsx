@@ -4,27 +4,21 @@ import PricingCardItem from "./PricingCardItem/PricingCardItem";
 import { CardWrapper } from "./styled";
 
 const PricingCards = () => {
-  const data = useAppSelector((state) => state.pricingPlans.data);
 
+  const { plans } = useAppSelector((state) => state.pricingPlans.data);
   const groupedPlans = useMemo(() => {
-    return data.plans.reduce<Record<string, (typeof data.plans)[number][]>>(
-      (acc, plan) => {
-        if (!acc[plan.name]) {
-          acc[plan.name] = [];
-        }
-        acc[plan.name].push(plan);
-        return acc;
-      },
-      {}
-    );
-  }, [data]);
-  console.log("data", data)
+    return plans.reduce((acc, plan) => {
+      (acc[plan.name] = acc[plan.name] || []).push(plan);
+      return acc;
+    }, {} as Record<string, (typeof plans)[number][]>);
+  }, [plans]);
+
   return (
     <CardWrapper>
-      {Object.keys(groupedPlans).map((planName, index) => (
+      {Object.entries(groupedPlans).map(([planName, plans], index) => (
         <PricingCardItem
-          key={crypto.randomUUID() + index}
-          plans={groupedPlans[planName]}
+          key={`${planName}-${index}`}
+          plans={plans}
         />
       ))}
     </CardWrapper>
