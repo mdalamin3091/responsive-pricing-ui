@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import AddProductForm from "./AddProductFrom";
 import ProductList from "./ProductList";
 import { Product } from "./types";
@@ -10,12 +10,12 @@ function App() {
     { id: 2, name: "Banana", price: 3 },
   ]);
 
-  const addProduct = (product: Omit<Product, "id">) => {
+  const addProduct = useCallback((product: Omit<Product, "id">) => {
     setProducts((prevProducts) => [
       ...prevProducts,
       { ...product, id: prevProducts.length + 1 },
     ]);
-  };
+  }, []);
 
   console.log(products.length);
   return (
