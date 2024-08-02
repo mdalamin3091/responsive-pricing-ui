@@ -1,5 +1,5 @@
 import Dropdown from "../../Dropdown/Dropdown";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import FeaturesSection from "../FeaturesSection/FeaturesSection";
 import PlanInfo from "../PlanInfo/PlanInfo";
 import {
@@ -11,22 +11,33 @@ import {
   PlanPrice,
   PopularBadge,
 } from "./styled";
-import { Plan } from "../../../types";
-
+import { ActivePlan, Plan, PlanDetail } from "../../../types";
+import { useAppSelector } from "../../../redux/hook";
 const PricingCardItem: FC<{ plans: Plan[] }> = ({ plans }) => {
+  const { activePlan } = useAppSelector((state) => state.pricingPlans);
+  
+  const planPriceDynamic = useMemo(() => {
+    if (plans.length > 1) {
+      return <PricingCardHeader details={plans[0].details["1_year"]} />;
+    } else {
+      if (activePlan === ActivePlan.YEARLY) {
+        return (
+          <PricingCardHeader
+            details={plans[0].details["2_year"]}
+            delPrice={plans[0].details["1_year"].price}
+          />
+        );
+      } else {
+        return <PricingCardHeader details={plans[0].details["1_year"]} />;
+      }
+    }
+  }, [activePlan, plans]);
+
   return (
     <CardStyled>
       <PopularBadge>Most Popular</PopularBadge>
       <PlanName>{plans[0].name}</PlanName>
-      <PlanPrice>
-        <Amount>{plans[0].price}</Amount>
-        <AmountWrapper>
-          <AmountType>{plans[0].details["1_year"].price_postfix}</AmountType>
-          {plans[0].details["1_year"].plan_type === "Billed annually" && (
-            <span>$15/Month</span>
-          )}
-        </AmountWrapper>
-      </PlanPrice>
+      {planPriceDynamic}
       {plans.length > 1 ? (
         <Dropdown plans={plans} />
       ) : (
@@ -38,3 +49,21 @@ const PricingCardItem: FC<{ plans: Plan[] }> = ({ plans }) => {
 };
 
 export default PricingCardItem;
+
+const PricingCardHeader: FC<{ details?: PlanDetail; delPrice?: string }> = ({
+  details,
+  delPrice,
+}) => {
+  const { activePlan } = useAppSelector((state) => state.pricingPlans);
+  return (
+    <PlanPrice>
+      <Amount>{details?.price}</Amount>
+      <AmountWrapper>
+        <AmountType>{details?.price_postfix}</AmountType>
+        {activePlan === ActivePlan.YEARLY && details?.price !== "Free" && delPrice && (
+          <span>{delPrice}/Month</span>
+        )}
+      </AmountWrapper>
+    </PlanPrice>
+  );
+};

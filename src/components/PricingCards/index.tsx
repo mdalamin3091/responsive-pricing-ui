@@ -18,6 +18,7 @@ const PricingCards = () => {
       {}
     );
   }, [data]);
+  console.log("data", data)
   return (
     <CardWrapper>
       {Object.keys(groupedPlans).map((planName, index) => (

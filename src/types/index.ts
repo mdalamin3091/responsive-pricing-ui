@@ -1,5 +1,5 @@
 
-interface PlanDetail {
+export interface PlanDetail {
     price: string;
     price_postfix: string;
     plan_type: string;
