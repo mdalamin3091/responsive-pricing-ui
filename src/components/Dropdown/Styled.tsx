@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
 import { TooltipStyled } from "../Tooltip/styled";
 
-
-export const DropdownStyled = styled.div<{open?:boolean}>`
+export const DropdownStyled = styled.div<{ open?: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.infoColor};
-  border-radius: 5px;  
+  border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 400;
@@ -20,7 +19,7 @@ export const DropdownStyled = styled.div<{open?:boolean}>`
   white-space: nowrap;
   width: auto;
 
-  &::after{
+  &::after {
     border-bottom: 2px solid ${({ theme }) => theme.colors.infoColor};
     border-right: 2px solid ${({ theme }) => theme.colors.infoColor};
     content: "";
@@ -32,16 +31,16 @@ export const DropdownStyled = styled.div<{open?:boolean}>`
     right: 20px;
     top: 50%;
     transform-origin: 66% 66%;
-    transition: all .15s ease-in-out;
+    transition: all 0.15s ease-in-out;
     width: 8px;
     ${({ open }) =>
-    open ?
-      css`
-          transform: rotate(225deg);
-    ` :
-      css`
-          transform: rotate(45deg);
-    `}
+      open
+        ? css`
+            transform: rotate(225deg);
+          `
+        : css`
+            transform: rotate(45deg);
+          `}
   }
 `;
 
@@ -67,21 +66,21 @@ export const DropdownList = styled.ul<{ open?: boolean }>`
   padding-left: 0;
   z-index: 10;
   transform-origin: 50% 0;
-  transition: all .2s cubic-bezier(.5,0,0,1.25), opacity .15s ease-out;
+  transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
 
   ${({ open }) =>
-    open ?
-      css`
-       visibility: visible;
-       opacity: 1;
-    ` :
-      css`
-       visibility: hidden;
-       opacity: 0;
-    `}
-`
+    open
+      ? css`
+          visibility: visible;
+          opacity: 1;
+        `
+      : css`
+          visibility: hidden;
+          opacity: 0;
+        `}
+`;
 
-export const DropdownListItem = styled.li`
+export const DropdownListItem = styled.li<{ isSelected: boolean }>`
   padding-left: 18px;
   font-size: ${({ theme }) => theme.sizes.xs};
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -90,15 +89,21 @@ export const DropdownListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:hover{
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      background-color: #f7f5fb;
+    `}
+
+  &:hover {
     color: ${({ theme }) => theme.colors.infoColor};
     background-color: #f7f5fb;
   }
 
-  &:last-child{
+  &:last-child {
     border-bottom: 0px;
   }
-`
+`;
 
 export const DropdownWrapper = styled.div`
   display: flex;
@@ -107,7 +112,7 @@ export const DropdownWrapper = styled.div`
   gap: 8px;
   margin-top: 8px;
   position: relative;
-
+  width: fit-content;
   & > svg {
     color: ${({ theme }) => theme.colors.infoColor};
     cursor: pointer;
@@ -117,5 +122,4 @@ export const DropdownWrapper = styled.div`
     visibility: visible;
     opacity: 1;
   }
-
-`
+`;

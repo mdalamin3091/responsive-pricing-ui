@@ -55,7 +55,7 @@
         {
             "name": "Basic",
             "price": "$18",
-            "title": "Up to <strong>40,000</strong> visitors/month",
+            "title": "Up to <strong>20,000</strong> visitors/month",
             "text": "The total number of unique visitors who can view Chaty on your website each month. The visitors' counter resets once every month",
             "details": {
                 "1_year": {
@@ -69,6 +69,58 @@
                 },
                 "2_year": {
                     "price": "$15",
+                    "price_postfix": "/Month",
+                    "plan_type": "Billed annually",
+                    "plan_info": "Save $",
+                    "dd_text": "Billed annually",
+                    "btn_text": "Buy now",
+                    "price_id": "#4"
+                }
+            }
+        },
+        {
+            "name": "Basic",
+            "price": "$25",
+            "title": "Up to <strong>30,000</strong> visitors/month",
+            "text": "The total number of unique visitors who can view Chaty on your website each month. The visitors' counter resets once every month",
+            "details": {
+                "1_year": {
+                    "price": "$25",
+                    "price_postfix": "/Month",
+                    "plan_type": "Billed monthly",
+                    "plan_info": "",
+                    "dd_text": "Billed monthly",
+                    "btn_text": "Buy now",
+                    "price_id": "#3"
+                },
+                "2_year": {
+                    "price": "$21",
+                    "price_postfix": "/Month",
+                    "plan_type": "Billed annually",
+                    "plan_info": "Save $",
+                    "dd_text": "Billed annually",
+                    "btn_text": "Buy now",
+                    "price_id": "#4"
+                }
+            }
+        },
+        {
+            "name": "Basic",
+            "price": "$30",
+            "title": "Up to <strong>50,000</strong> visitors/month",
+            "text": "The total number of unique visitors who can view Chaty on your website each month. The visitors' counter resets once every month",
+            "details": {
+                "1_year": {
+                    "price": "$30",
+                    "price_postfix": "/Month",
+                    "plan_type": "Billed monthly",
+                    "plan_info": "",
+                    "dd_text": "Billed monthly",
+                    "btn_text": "Buy now",
+                    "price_id": "#3"
+                },
+                "2_year": {
+                    "price": "$26",
                     "price_postfix": "/Month",
                     "plan_type": "Billed annually",
                     "plan_info": "Save $",

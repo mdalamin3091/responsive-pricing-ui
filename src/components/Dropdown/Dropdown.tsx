@@ -30,7 +30,6 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
 
   const isOpen = openDropdownMenu === plans[0].name;
   const dropdownTitle = plans[0].name === selectPlans.name ? selectPlans.title : plans[0].title;
-
   return (
     <DropdownWrapper>
       <DropdownStyled open={isOpen} onClick={() => handleDropdownMenu(plans[0].name)}>
@@ -41,6 +40,7 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
               key={plan.name}
               onClick={() => handleSelectPlan(plan)}
               dangerouslySetInnerHTML={{ __html: plan.title }}
+              isSelected={plan.title === selectPlans.title }
             />
           ))}
         </DropdownList>
