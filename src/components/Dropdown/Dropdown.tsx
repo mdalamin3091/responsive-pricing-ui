@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useCallback } from "react";
 import WarningIcon from "../../assets/svg/WarningIcon";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { setDropdownOpen, setSelectPlans } from "../../redux/slice";
@@ -13,45 +13,34 @@ import {
 } from "./Styled";
 
 const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
-  const { openDropdownMenu, selectPlans } = useAppSelector(
-    (state) => state.pricingPlans
-  );
+  const { openDropdownMenu, selectPlans } = useAppSelector((state) => state.pricingPlans);
   const dispatch = useAppDispatch();
 
-  const handleDropdownMenu = (value: string) => {
-    if (openDropdownMenu === value) {
-      dispatch(setDropdownOpen(""));
-    } else {
-      dispatch(setDropdownOpen(value));
-    }
-  };
+  const handleDropdownMenu = useCallback((value: string) => {
+    dispatch(setDropdownOpen(openDropdownMenu === value ? "" : value));
+  }, [dispatch, openDropdownMenu]);
+
+  const handleSelectPlan = useCallback((plan: Plan) => {
+    dispatch(setSelectPlans(plan));
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setSelectPlans(plans[0]));
-  }, [dispatch, plans]);
+    handleSelectPlan(plans[0]);
+  }, [plans, handleSelectPlan]);
+
+  const isOpen = openDropdownMenu === plans[0].name;
+  const dropdownTitle = plans[0].name === selectPlans.name ? selectPlans.title : plans[0].title;
 
   return (
     <DropdownWrapper>
-      <DropdownStyled
-        open={openDropdownMenu === plans[0].name}
-        onClick={() => handleDropdownMenu(plans[0].name)}
-      >
-        <DropdownTitle
-          dangerouslySetInnerHTML={{
-            __html:
-              plans[0].name === selectPlans.name
-                ? selectPlans.title
-                : plans[0].title,
-          }}
-        />
-        <DropdownList open={openDropdownMenu === plans[0].name}>
-          {plans.map((plan, index) => (
+      <DropdownStyled open={isOpen} onClick={() => handleDropdownMenu(plans[0].name)}>
+        <DropdownTitle dangerouslySetInnerHTML={{ __html: dropdownTitle }} />
+        <DropdownList open={isOpen}>
+          {plans.map((plan) => (
             <DropdownListItem
-              key={crypto.randomUUID() + index}
-              onClick={() => dispatch(setSelectPlans(plan))}
-              dangerouslySetInnerHTML={{
-                __html: plan.title,
-              }}
+              key={plan.name}
+              onClick={() => handleSelectPlan(plan)}
+              dangerouslySetInnerHTML={{ __html: plan.title }}
             />
           ))}
         </DropdownList>

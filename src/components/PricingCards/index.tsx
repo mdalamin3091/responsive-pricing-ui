@@ -4,7 +4,6 @@ import PricingCardItem from "./PricingCardItem/PricingCardItem";
 import { CardWrapper } from "./styled";
 
 const PricingCards = () => {
-
   const { plans } = useAppSelector((state) => state.pricingPlans.data);
   const groupedPlans = useMemo(() => {
     return plans.reduce((acc, plan) => {

@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from "styled-components";
-// import { device } from "./BreakPoints";
 
 export const GlobalStyles = createGlobalStyle` 
 /* Box sizing rules */
@@ -67,11 +66,4 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 40px ${({ theme }) => theme.paddings.container};
   padding-bottom: 50px;
-`;
-
-export const SmallContainer = styled.div`
-  width: 100%;
-  max-width: 570px;
-  margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.paddings.container};
 `;

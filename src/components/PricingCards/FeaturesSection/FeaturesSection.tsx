@@ -13,7 +13,7 @@ import { useAppSelector } from "../../../redux/hook";
 const FeaturesSection: FC<{ plan: Plan }> = ({ plan }) => {
   const data = useAppSelector((state) => state.pricingPlans.data);
 
-  const dynamicTitle = useMemo(() => {
+  const title = useMemo(() => {
     return plan?.name === "Free"
       ? "Free includes:"
       : "Everything in free plus:";
@@ -40,7 +40,7 @@ const FeaturesSection: FC<{ plan: Plan }> = ({ plan }) => {
 
   return (
     <FeatureStyled>
-      <Title>{dynamicTitle}</Title>
+      <Title>{title}</Title>
       <List>{dynamicLoadFeatures()}</List>
       <SelectPlanButton>Select Plan</SelectPlanButton>
     </FeatureStyled>

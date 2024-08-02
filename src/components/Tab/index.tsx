@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { TabBadge, TabButton, TabWrapper } from "./styled";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { setActivePlan } from "../../redux/slice";
@@ -9,21 +9,27 @@ const Tabs: React.FC = () => {
     (state) => state.pricingPlans
   );
   const dispatch = useAppDispatch();
+
+  const createTabButton = useMemo(
+    () => (plan: ActivePlan, key: string, defaultTitle: string) =>
+      (
+        <TabButton
+          onClick={() => dispatch(setActivePlan(plan))}
+          isActive={activePlan === plan}
+        >
+          {plansInfo && key in plansInfo
+            ? plansInfo[key as keyof typeof plansInfo]?.title
+            : defaultTitle}
+        </TabButton>
+      ),
+    [dispatch, activePlan, plansInfo]
+  );
+
   return (
     <TabWrapper>
-      <TabButton
-        onClick={() => dispatch(setActivePlan(ActivePlan.MONTHLY))}
-        isActive={activePlan === ActivePlan.MONTHLY}
-      >
-        {plansInfo?.["1_year"]?.title || "Billed monthly"}
-      </TabButton>
+      {createTabButton(ActivePlan.MONTHLY, "1_year", "Billed monthly")}
       <div>
-        <TabButton
-          onClick={() => dispatch(setActivePlan(ActivePlan.YEARLY))}
-          isActive={activePlan === ActivePlan.YEARLY}
-        >
-          {plansInfo?.["2_year"]?.title || "Billed yearly"}
-        </TabButton>
+        {createTabButton(ActivePlan.YEARLY, "2_year", "Billed yearly")}
         <TabBadge>{plansInfo?.["2_year"]?.discount}</TabBadge>
       </div>
     </TabWrapper>
