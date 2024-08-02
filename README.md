@@ -13,4 +13,9 @@ Live Link: https://responsive-pricing-ui.netlify.app/
 - Redux
 - React-Redux
 - Redux Toolkit
-- Styled-components
+- Styled-
+
+### Problem 2 & 3
+Problems 2 and 3 focus on optimization and code refactoring to achieve the best results.
+
+The solutions for Problems 2 and 3 are included in the src label path.
