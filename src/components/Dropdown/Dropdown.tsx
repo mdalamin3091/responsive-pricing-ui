@@ -13,34 +13,48 @@ import {
 } from "./Styled";
 
 const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
-  const { openDropdownMenu, selectPlans } = useAppSelector((state) => state.pricingPlans);
+  const { openDropdownMenu, selectPlans } = useAppSelector(
+    (state) => state.pricingPlans
+  );
   const dispatch = useAppDispatch();
 
-  const handleDropdownMenu = useCallback((value: string) => {
-    dispatch(setDropdownOpen(openDropdownMenu === value ? "" : value));
-  }, [dispatch, openDropdownMenu]);
+  const handleDropdownMenu = useCallback(
+    (value: string) => {
+      dispatch(setDropdownOpen(openDropdownMenu === value ? "" : value));
+    },
+    [dispatch, openDropdownMenu]
+  );
 
-  const handleSelectPlan = useCallback((plan: Plan) => {
-    dispatch(setSelectPlans(plan));
-  }, [dispatch]);
+  const handleSelectPlan = useCallback(
+    (plan: Plan) => {
+      dispatch(setSelectPlans(plan));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     handleSelectPlan(plans[0]);
   }, [plans, handleSelectPlan]);
 
   const isOpen = openDropdownMenu === plans[0].name;
-  const dropdownTitle = plans[0].name === selectPlans.name ? selectPlans.title : plans[0].title;
+  const dropdownTitle =
+    plans[0].name === selectPlans.name ? selectPlans.title : plans[0].title;
   return (
     <DropdownWrapper>
-      <DropdownStyled open={isOpen} onClick={() => handleDropdownMenu(plans[0].name)}>
+      <DropdownStyled
+        open={isOpen}
+        onClick={() => handleDropdownMenu(plans[0].name)}
+        tabIndex={0}
+        onBlur={() => dispatch(setDropdownOpen(""))}
+      >
         <DropdownTitle dangerouslySetInnerHTML={{ __html: dropdownTitle }} />
         <DropdownList open={isOpen}>
           {plans.map((plan) => (
             <DropdownListItem
-              key={plan.name}
+              key={crypto.randomUUID()}
               onClick={() => handleSelectPlan(plan)}
               dangerouslySetInnerHTML={{ __html: plan.title }}
-              isSelected={plan.title === selectPlans.title }
+              isSelected={plan.title === selectPlans.title}
             />
           ))}
         </DropdownList>
