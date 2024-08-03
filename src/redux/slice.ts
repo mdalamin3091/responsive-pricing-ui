@@ -6,14 +6,14 @@ type PricingSliceState = {
   data: PlansData;
   activePlan: ActivePlan;
   openDropdownMenu: string;
-  selectPlans: Plan;
+  selectPlans: Plan[];
 };
 
 const initialState: PricingSliceState = {
   data: data,
   activePlan: ActivePlan.MONTHLY,
   openDropdownMenu: "",
-  selectPlans: {} as Plan,
+  selectPlans: [],
 };
 
 const pricingPlanSlice = createSlice({
@@ -28,7 +28,15 @@ const pricingPlanSlice = createSlice({
     },
     setSelectPlans(state, action: PayloadAction<Plan>) {
       state.openDropdownMenu = "";
-      state.selectPlans = action.payload;
+      const existingPlanIndex = state.selectPlans.findIndex(plan => plan.name === action.payload.name);
+
+      if (existingPlanIndex >= 0) {
+        // Replace existing plan
+        state.selectPlans[existingPlanIndex] = action.payload;
+      } else {
+        // Push new plan
+        state.selectPlans.push(action.payload);
+      }
     },
   },
 });

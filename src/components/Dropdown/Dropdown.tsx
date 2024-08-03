@@ -37,8 +37,7 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
   }, [plans, handleSelectPlan]);
 
   const isOpen = openDropdownMenu === plans[0].name;
-  const dropdownTitle =
-    plans[0].name === selectPlans.name ? selectPlans.title : plans[0].title;
+  const selectedPlan = selectPlans.find((plan) => plan.name === plans[0].name);
   return (
     <DropdownWrapper>
       <DropdownStyled
@@ -47,20 +46,22 @@ const Dropdown: FC<{ plans: Plan[] }> = ({ plans }) => {
         tabIndex={0}
         onBlur={() => dispatch(setDropdownOpen(""))}
       >
-        <DropdownTitle dangerouslySetInnerHTML={{ __html: dropdownTitle }} />
+        <DropdownTitle
+          dangerouslySetInnerHTML={{ __html: selectedPlan?.title as string }}
+        />
         <DropdownList open={isOpen}>
           {plans.map((plan) => (
             <DropdownListItem
               key={crypto.randomUUID()}
               onClick={() => handleSelectPlan(plan)}
               dangerouslySetInnerHTML={{ __html: plan.title }}
-              isSelected={plan.title === selectPlans.title}
+              isSelected={plan.title === selectedPlan?.title}
             />
           ))}
         </DropdownList>
       </DropdownStyled>
       <WarningIcon />
-      <Tooltip content={selectPlans.text} />
+      <Tooltip content={selectedPlan?.text as string} />
     </DropdownWrapper>
   );
 };
