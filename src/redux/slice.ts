@@ -28,7 +28,9 @@ const pricingPlanSlice = createSlice({
     },
     setSelectPlans(state, action: PayloadAction<Plan>) {
       state.openDropdownMenu = "";
-      const existingPlanIndex = state.selectPlans.findIndex(plan => plan.name === action.payload.name);
+      const existingPlanIndex = state.selectPlans.findIndex(
+        (plan) => plan.name === action.payload.name
+      );
 
       if (existingPlanIndex >= 0) {
         // Replace existing plan

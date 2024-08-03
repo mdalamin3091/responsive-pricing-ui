@@ -34,11 +34,11 @@ export const DropdownStyled = styled.div<{ open?: boolean }>`
     transition: all 0.15s ease-in-out;
     width: 8px;
     ${({ open }) =>
-      open
-        ? css`
+    open
+      ? css`
             transform: rotate(225deg);
           `
-        : css`
+      : css`
             transform: rotate(45deg);
           `}
   }

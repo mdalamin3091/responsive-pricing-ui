@@ -1,14 +1,22 @@
 import { FC } from "react";
 import { PlanDetail, ActivePlan } from "../../../types";
 import { useAppSelector } from "../../../redux/hook";
-import { Amount, AmountType, AmountWrapper, PlanPrice } from "../PricingCardItem/styled";
+import {
+  Amount,
+  AmountType,
+  AmountWrapper,
+  PlanPrice,
+} from "../PricingCardItem/styled";
 
 interface PricingCardHeaderProps {
   details?: PlanDetail;
   delPrice?: string;
 }
 
-const PricingCardHeader: FC<PricingCardHeaderProps> = ({ details, delPrice }) => {
+const PricingCardHeader: FC<PricingCardHeaderProps> = ({
+  details,
+  delPrice,
+}) => {
   const { activePlan } = useAppSelector((state) => state.pricingPlans);
 
   return (
