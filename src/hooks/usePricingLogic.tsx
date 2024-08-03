@@ -8,19 +8,19 @@ export const usePricingLogic = (plans: Plan[]) => {
 
   const getPlanPriceHeader = useMemo(() => {
     const defaultPlan = plans[0];
-    const yearlyDetails = defaultPlan.details["1_year"];
-    const twoYearDetails = defaultPlan.details["2_year"];
+    const monthlyDetails = defaultPlan.details["1_year"];
+    const yearlyDetails = defaultPlan.details["2_year"];
 
     // Handle case when only one plan is available
     if (plans.length === 1) {
       return activePlan === ActivePlan.YEARLY
-        ? { details: twoYearDetails, delPrice: yearlyDetails.price }
-        : { details: yearlyDetails };
+        ? { details: yearlyDetails, delPrice: monthlyDetails.price }
+        : { details: monthlyDetails };
     }
 
     // Handle case when no plans are selected
     if (!selectPlans.length) {
-      return { details: twoYearDetails, delPrice: yearlyDetails.price };
+      return { details: yearlyDetails, delPrice: monthlyDetails.price };
     }
 
     // Check if the default plan is selected
@@ -44,7 +44,7 @@ export const usePricingLogic = (plans: Plan[]) => {
     }
 
     // Default return if no specific plan is selected
-    return { details: twoYearDetails, delPrice: yearlyDetails.price };
+    return { details: yearlyDetails, delPrice: monthlyDetails.price };
   }, [activePlan, plans, selectPlans]);
 
   return { getPlanPriceHeader };
